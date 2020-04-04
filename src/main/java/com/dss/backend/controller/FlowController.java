@@ -7,8 +7,8 @@ import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.variable.api.history.HistoricVariableInstance;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class FlowController {
         this.historyService = historyService;
     }
 
-    @PostMapping("/{melicode}/findSchoolByMelicode")
+    @GetMapping("/{melicode}/findSchoolByMelicode")
     public ResponseEntity<School> findSchoolByMelicode(@PathVariable("melicode") String melicode) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("melicode", melicode);
