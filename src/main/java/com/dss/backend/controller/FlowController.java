@@ -1,9 +1,11 @@
 package com.dss.backend.controller;
 
+import com.dss.backend.model.School;
 import org.flowable.engine.HistoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.variable.api.history.HistoricVariableInstance;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +28,14 @@ public class FlowController {
     }
 
     @PostMapping("/{melicode}/findSchoolByMelicode")
-    public ResponseEntity<String> saySomething(@PathVariable("melicode") String melicode) {
+    public ResponseEntity<School> findSchoolByMelicode(@PathVariable("melicode") String melicode) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("melicode", melicode);
         final ProcessInstance process = runtimeService.startProcessInstanceByKey("findSchoolByMelicode", variables);
         final HistoricVariableInstance hvi = historyService.createHistoricVariableInstanceQuery()
                 .processInstanceId(process.getId())
                 .variableName("result").singleResult();
-        String message = (String) hvi.getValue();
-        return ResponseEntity.ok(message);
+        School school = (School) hvi.getValue();
+        return new ResponseEntity<School>(school, HttpStatus.OK);
     }
 }
