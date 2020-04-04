@@ -5,7 +5,7 @@
     <endEvent id="endevent" name="End"/>
     <serviceTask activiti:exclusive="true" activiti:expression="${studentService.getByMeliCode(melicode)}" activiti:resultVariableName="student" id="servicetask1" name="Student Details"/>
     <serviceTask activiti:exclusive="true" activiti:expression="${linkService.getSchoolIdByStudentId(student.id)}" activiti:resultVariableName="school_id" id="servicetask2" name="Link Details"/>
-    <serviceTask activiti:exclusive="true" activiti:expression="${schoolService.get(school_id)}" activiti:resultVariableName="school" id="servicetask3" name="School Details"/>
+    <serviceTask activiti:exclusive="true" activiti:expression="${schoolService.get(school_id)}" activiti:resultVariableName="result" id="servicetask3" name="School Details"/>
 	<sequenceFlow id="_3" sourceRef="startevent" targetRef="servicetask1"/>
     <sequenceFlow id="_7" sourceRef="servicetask1" targetRef="servicetask2"/>
     <sequenceFlow id="_8" sourceRef="servicetask2" targetRef="servicetask3"/>
