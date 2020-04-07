@@ -4,10 +4,9 @@ import com.dss.backend.model.School;
 import com.dss.backend.services.SchoolService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.flowable.engine.HistoryService;
-import org.flowable.engine.RuntimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,14 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/schoolApi")
 public class SchoolController {
-
-    private RuntimeService runtimeService;
-    private HistoryService historyService;
-
-    public SchoolController(final RuntimeService runtimeService, final HistoryService historyService) {
-        this.runtimeService = runtimeService;
-        this.historyService = historyService;
-    }
 
     @Autowired
     private SchoolService schoolService;
